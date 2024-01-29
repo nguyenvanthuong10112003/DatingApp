@@ -1,0 +1,17 @@
+<h1>{{title}}</h1>
+<table>
+    <thead>
+        <th>
+            Id
+        </th>
+        <th>
+            Username
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor='let user of res.datas'>
+            <td>{{user.id}}</td>
+            <td>{{user.userName}}</td>
+        </tr>
+    </tbody>
+</table>

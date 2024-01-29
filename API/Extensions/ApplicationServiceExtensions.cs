@@ -1,0 +1,18 @@
+using API.Data;
+using API.Interface;
+using API.Service;
+using Microsoft.EntityFrameworkCore;
+
+namespace API.Extensions 
+{
+    public static class ApplicationServiceExtensions {
+        public static void AddApplicationServices(this IServiceCollection services, IConfiguration config) {
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddDbContext<DataContext>(options => 
+            {
+                options.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                    SQLitePCL.Batteries.Init();
+            });
+        }
+    }
+}
