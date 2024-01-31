@@ -21,8 +21,6 @@ namespace API.Controllers
         }
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto userDto) {
-            if (context == null)
-                return BadRequest("An error, please try later");
             if (await CheckExisted(userDto.Username))
                 return BadRequest("Existed");
             using var hmac = new HMACSHA512();
@@ -42,8 +40,6 @@ namespace API.Controllers
         }
         [HttpPost("Login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto userDto) {
-            if (context == null)
-                return BadRequest("An error, please try later");
             var user = await context.Users.Where(item => 
                     item.UserName == userDto.Username.ToLower()
                 ).SingleOrDefaultAsync();

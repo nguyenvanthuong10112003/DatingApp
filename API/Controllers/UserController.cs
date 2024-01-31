@@ -20,8 +20,6 @@ namespace API.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
-            if (context == null)
-                return null;
             return await context.Users.ToListAsync();
         }
         //api/users/id
@@ -29,8 +27,8 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<AppUser>> GetUsers(int id) 
         {
-            if (id <= 0 || context == null)
-                return null;
+            if (id <= 0)
+                return BadRequest("List is null");
             return await context.Users.FindAsync(id);
         }
     }

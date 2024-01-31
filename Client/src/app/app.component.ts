@@ -1,25 +1,48 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { AppResponsive } from '../assets/AppResponsive';
+import { Component, OnInit, Output } from '@angular/core';
+import { User } from './_models/user';
+import { AccountService } from './_services/AccountService';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  urlAPI = 'https://localhost:7091/';
+  public static buttonItems = {accept: 'accept', cancel: 'cancel'}
+  alertDetail: any
+  urlAPI = 'https://localhost:5001/';
   title = 'Client';
   res: any;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private accountService: AccountService) {}
   ngOnInit(): void {
-    this.getUsers();
+    this.setCurrentUser();
+    this.initAlert();
   }
-  getUsers() {
-    this.http.get(this.urlAPI + 'api/user/all').subscribe(
-      response =>
-      {
-        this.res = response
-      }, error => console.log(error)
-      )
+
+  initAlert() {
+    this.alertDetail = {}
+    this.alertDetail.message = ""
+    this.alertDetail.buttons = []
+    this.alertDetail.htmlContent = ""
+    this.alertDetail.isShow = false
+    this.alertDetail.accept = () => {}
+  }
+
+  setCurrentUser() {
+    if (localStorage.getItem('user')) {
+      const user: User = JSON.parse(localStorage.getItem('user')!);
+      if (user) 
+        this.accountService.setCurrentUser(user);
+    }
+  }
+  
+  onAlert(event: {message: string, buttons: [], htmlContent: string, accept: () => {}}) {
+    this.alertDetail.message = event.message
+    for (let i of event.buttons) 
+      this.alertDetail.buttons[i] = true
+    this.alertDetail.htmlContent = event.htmlContent
+    this.alertDetail.accept = event.accept
+    this.alertDetail.isShow = true 
   }
 }
