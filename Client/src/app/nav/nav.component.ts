@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { User } from '../_models/user';
 import { AlertComponent } from '../alert/alert.component';
 import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -11,35 +13,38 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  @Input() app: any
   model: any = {}
-  constructor(public accountService: AccountService) { }
+
+  constructor(public accountService: AccountService, 
+              private router: Router, 
+              private toastr: ToastrService) 
+  { }
+  
   ngOnInit(): void {
   }
+
   login() {
     //validated
     if (!this.model.username || !this.model.password) {
-      this.app.onAlert({
-        buttons: [AppComponent.buttonItems.accept],
-        message: "Username and password cannot be empty."
-      })
+      this.toastr.error('Username and password cannot be empty.')
       return;
     }
     this.accountService.login(this.model).subscribe(response => {
+      this.router.navigateByUrl('/members');
       console.log(response)
+      this.toastr.success('Loggin success.')
     }, error => {
       console.log(error)
       if (error.error && typeof(error.error) !== typeof({}))
         error = error.error;
       else
         error ='Login failer';
-      this.app.onAlert({
-          buttons: [AppComponent.buttonItems.accept],
-          message:  error
-      })
+      this.toastr.error(error)
     })
   }
+
   logout() {
     this.accountService.logout()
+    this.router.navigateByUrl('/')
   }
 }

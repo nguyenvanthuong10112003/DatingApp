@@ -19,8 +19,10 @@ export class AlertComponent implements OnInit {
   }
 
   whenAccept() {
-    this.model.accept()
-    this.model.accept = () => {}
+    if (this.model.accept && typeof(this.model.accept) == typeof(function () {})) {
+      this.model.accept()
+      this.model.accept = () => {}
+    }
     this.hide()
   }
 }

@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../_models/user';
 import { AppComponent } from '../app.component';
 import { AccountService } from '../_services/AccountService';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -11,20 +12,15 @@ import { AccountService } from '../_services/AccountService';
   
 })
 export class RegisterComponent implements OnInit {
-  @Input()
-  home: any
-
-  @Input() 
-  app: any
-
-  @Input() 
-  usersFromHome: any
+  @Output()
+  cancelRegister = new EventEmitter()
 
   model: any = {};
 
   baseUrl = "https://5001/api"
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService, 
+              private toastr: ToastrService) {}
 
   ngOnInit(): void {
 
@@ -33,42 +29,30 @@ export class RegisterComponent implements OnInit {
   register() {
     //validate
     if (!this.model.username || !this.model.password) {
-      this.app.onAlert({
-        buttons: [AppComponent.buttonItems.accept],
-        message: "Username and password cannot be empty."
-      })
+      this.toastr.error('Username and password cannot be empty.')
       return;
     }
     if (this.model.password !== this.model.rePassword) {
-      this.app.onAlert({
-        buttons: [AppComponent.buttonItems.accept],
-        message: "Password and repeat password are no match."
-      })
+      this.toastr.error('Password and repeat password are no match.')
       return;
     }
     //
     this.accountService.register(this.model).subscribe(
       response => {
         console.log(response)
-        this.app.onAlert({
-          buttons: [AppComponent.buttonItems.accept],
-          message: "Register complete.",
-          accept: () => { this.home.registerMode = false }
-        })
+        this.toastr.success('Register success.')
+        this.cancel()
       }, error => {
         console.log(error)
         if (error.error && typeof(error.error) !== typeof({}))
           error = error.error;
         else
           error ='Register failer';
-        this.app.onAlert({
-          buttons: [AppComponent.buttonItems.accept],
-          message:  error
-        })
+        this.toastr.error(error)
       }
     )
   }
   cancel() {
-    this.home.cancelRegister()
+    this.cancelRegister.emit(false)
   }
  }
