@@ -1,35 +1,39 @@
 using System.Data.SqlTypes;
 using API.Data;
+using API.DTOs;
 using API.Entities;
+using API.Interface;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+    [Authorize]
     [Route("api/users")]
     public class UserController : BaseApiController
     {
-        private readonly DataContext context;
-        public UserController(DataContext context) 
+        private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
+        public UserController(IUserRepository userRepository, IMapper mapper) 
         {
-            this.context = context;
+            this._userRepository = userRepository;
+            this._mapper = mapper;
         }
         //api/users
         [HttpGet()]
-        [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
-            return await context.Users.ToListAsync();
+            return Ok(await _userRepository.GetAllDtoAsync());
         }
         //api/users/id
         [HttpGet("{id}")]
-        [Authorize]
-        public async Task<ActionResult<AppUser>> GetUsers(int id) 
+        public async Task<ActionResult<MemberDto>> GetUsers(int id) 
         {
             if (id <= 0)
-                return BadRequest("List is null");
-            return await context.Users.FindAsync(id);
+                return BadRequest("Id is invalid");
+            return await _userRepository.GetDtoByPKAsync(id);
         }
     }
 }
