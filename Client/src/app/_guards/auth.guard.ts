@@ -1,5 +1,5 @@
 import { CanActivate, CanActivateFn, Router } from '@angular/router';
-import { AccountService } from '../_services/AccountService';
+import { AccountService } from '../_services/account.service';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';

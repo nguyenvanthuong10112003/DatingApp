@@ -28,12 +28,12 @@ namespace API.Controllers
             return Ok(await _userRepository.GetAllDtoAsync());
         }
         //api/users/id
-        [HttpGet("{id}")]
-        public async Task<ActionResult<MemberDto>> GetUsers(int id) 
+        [HttpGet("{username}")]
+        public async Task<ActionResult<MemberDto>> GetUsers(string username) 
         {
-            if (id <= 0)
-                return BadRequest("Id is invalid");
-            return await _userRepository.GetDtoByPKAsync(id);
+            if (string.IsNullOrEmpty(username))
+                return BadRequest("Username is invalid");
+            return await _userRepository.GetDtoByUsernameAsync(username);
         }
     }
 }
