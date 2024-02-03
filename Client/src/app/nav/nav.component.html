@@ -21,7 +21,7 @@
         <div class="btn-group" dropdown *ngIf="(accountService.currentUser$ | async) as user">
             <span class="dropdown-toggle text-light text-decoration-none cursor-pointer" dropdownToggle>{{user.username}}</span>
             <div class="dropdown-menu list-buttons" *dropdownMenu>
-                <a href="#" class="dropdown-item">Edit profile</a>
+                <a href="#" class="dropdown-item" routerLink="/member/edit">Edit profile</a>
                 <a href="#" class="dropdown-item" (click)="logout()">Logout</a>
             </div>
         </div>
