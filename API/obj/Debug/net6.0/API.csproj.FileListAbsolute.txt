@@ -77,3 +77,5 @@ D:\appDating\API\obj\Debug\net6.0\API.sourcelink.json
 D:\appDating\API\bin\Debug\net6.0\Data\UserSeedData.json
 D:\appDating\API\bin\Debug\net6.0\AutoMapper.dll
 D:\appDating\API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\appDating\API\bin\Debug\net6.0\CloudinaryDotNet.dll
+D:\appDating\API\bin\Debug\net6.0\Newtonsoft.Json.dll

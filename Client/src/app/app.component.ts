@@ -36,13 +36,4 @@ export class AppComponent implements OnInit {
         this.accountService.setCurrentUser(user);
     }
   }
-  
-  onAlert(event: {message: string, buttons: [], htmlContent: string, accept: () => {}}) {
-    this.alertDetail.message = event.message
-    for (let i of event.buttons) 
-      this.alertDetail.buttons[i] = true
-    this.alertDetail.htmlContent = event.htmlContent
-    this.alertDetail.accept = event.accept
-    this.alertDetail.isShow = true 
-  }
 }

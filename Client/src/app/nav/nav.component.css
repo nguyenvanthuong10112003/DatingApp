@@ -19,3 +19,12 @@
     margin-left: 100%;
     transform: translateX(-100%) !important;
 }
+
+img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
+    display: inline;
+    border-radius: 50%;
+}
+

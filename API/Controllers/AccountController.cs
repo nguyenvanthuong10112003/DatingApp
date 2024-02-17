@@ -32,7 +32,7 @@ namespace API.Controllers
             context.Users.Add(newUser);
             int checkCreate = await context.SaveChangesAsync();
             if (checkCreate == 0)
-                return BadRequest("An error, please try later");
+                return BadRequest("Fail to register, please try later");
             return new UserDto() {
                 Username = newUser.UserName,
                 Token = tokenService.CreateToken(newUser)
@@ -40,9 +40,10 @@ namespace API.Controllers
         }
         [HttpPost("Login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto userDto) {
-            var user = await context.Users.Where(item => 
-                    item.UserName == userDto.Username.ToLower()
-                ).SingleOrDefaultAsync();
+            var user = await context.Users
+                        .Include(item => item.Photos)
+                        .SingleOrDefaultAsync(item => 
+                            item.UserName == userDto.Username.ToLower());
             if (user == null)
                 return Unauthorized("Invalid username");
             using var hmac = new HMACSHA512(user.PasswordSalt);
@@ -54,7 +55,8 @@ namespace API.Controllers
                     return Unauthorized("Invalid password");
             return new UserDto() {
                 Username = user.UserName,
-                Token = tokenService.CreateToken(user)
+                Token = tokenService.CreateToken(user),
+                PhotoUrl = user.Photos?.SingleOrDefault(x => x.IsMain)?.Url
             };
         }
         private async Task<bool> CheckExisted(string username) 
