@@ -3,5 +3,6 @@ namespace API.DTOs{
         public string Username {set;get;}
         public string Token {set;get;}
         public string PhotoUrl {set; get;}
+        public string KnownAs {get; set;}
     }    
 }

@@ -1,0 +1,8 @@
+input,
+select {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin: 10px 0;
+}

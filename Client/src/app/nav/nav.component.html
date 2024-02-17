@@ -19,7 +19,7 @@
             </li>
         </ul>
         <div class="btn-group align-items-center" dropdown *ngIf="(accountService.currentUser$ | async) as user">
-            <img src="{{user.photoUrl}}" alt="{{user.username}}">
+            <img src="{{user.photoUrl || '../../../../assets/user.png'}}" alt="{{user.username}}">
             <span class="dropdown-toggle text-light ms-2 cursor-pointer" dropdownToggle>{{user.username}}</span>
             <div class="dropdown-menu list-buttons" *dropdownMenu>
                 <a href="#" class="dropdown-item" routerLink="/member/edit">Edit profile</a>

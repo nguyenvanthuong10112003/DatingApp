@@ -6,6 +6,7 @@ import { AlertComponent } from '../alert/alert.component';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { MembersService } from '../_services/members.service';
 
 @Component({
   selector: 'app-nav',
@@ -17,7 +18,8 @@ export class NavComponent implements OnInit {
 
   constructor(public accountService: AccountService, 
               private router: Router, 
-              private toastr: ToastrService) 
+              private toastr: ToastrService, 
+              private memberService: MembersService) 
   { }
   
   ngOnInit(): void {
@@ -46,5 +48,6 @@ export class NavComponent implements OnInit {
   logout() {
     this.accountService.logout()
     this.router.navigateByUrl('/')
+    this.memberService.setDefault()
   }
 }

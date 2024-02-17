@@ -53,6 +53,9 @@ export class PhotoEditorComponent {
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
         const photo = JSON.parse(response)
+        if (photo.isMain) {
+          this.configWhenChangeMainPhoto(photo)
+        }
         this.member.photos.push(photo)
       }
     }
@@ -69,9 +72,7 @@ export class PhotoEditorComponent {
   setMainPhoto(photo: Photo) {{
     this.memberService.setMainPhoto(photo.id).subscribe(
       () => {
-        this.user.photoUrl = photo.url;
-        this.accountService.setCurrentUser(this.user);
-        this.member.photoUrl = photo.url;
+        this.configWhenChangeMainPhoto(photo)
         this.member.photos.forEach(p => {
           if (p.isMain) p.isMain = false;
           if (p.id === photo.id) p.isMain = true;
@@ -79,4 +80,10 @@ export class PhotoEditorComponent {
       }
     )
   }}
+
+  configWhenChangeMainPhoto(photo: Photo) {
+    this.user.photoUrl = photo.url;
+    this.accountService.setCurrentUser(this.user);
+    this.member.photoUrl = photo.url;
+  }
 }

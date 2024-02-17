@@ -6,6 +6,7 @@ using API.DTOs;
 using API.Entities;
 using API.Interface;
 using API.Service;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,27 +16,33 @@ namespace API.Controllers
     {
         private readonly DataContext context;
         private readonly ITokenService tokenService;
-        public AccountController(DataContext ctx, ITokenService tokenService) {
+        private readonly IMapper mapper;
+        public AccountController(DataContext ctx, ITokenService tokenService, IMapper mapper) {
             this.tokenService = tokenService;
             this.context = ctx;
+            this.mapper = mapper;
         }
         [HttpPost("register")]
-        public async Task<ActionResult<UserDto>> Register(RegisterDto userDto) {
-            if (await CheckExisted(userDto.Username))
+        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto) {
+            if (await CheckExisted(registerDto.Username))
                 return BadRequest("Existed");
+
+            var newUser = mapper.Map<AppUser>(registerDto);
+
             using var hmac = new HMACSHA512();
-            var newUser = new AppUser() {
-                UserName = userDto.Username.ToLower(),
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userDto.Password)),
-                PasswordSalt = hmac.Key
-            };
+            newUser.UserName = registerDto.Username.ToLower();
+            newUser.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+            newUser.PasswordSalt = hmac.Key;
+
             context.Users.Add(newUser);
             int checkCreate = await context.SaveChangesAsync();
             if (checkCreate == 0)
                 return BadRequest("Fail to register, please try later");
-            return new UserDto() {
+
+            return new UserDto {
                 Username = newUser.UserName,
-                Token = tokenService.CreateToken(newUser)
+                Token = tokenService.CreateToken(newUser),
+                KnownAs = newUser.KnownAs
             };
         }
         [HttpPost("Login")]
@@ -56,7 +63,8 @@ namespace API.Controllers
             return new UserDto() {
                 Username = user.UserName,
                 Token = tokenService.CreateToken(user),
-                PhotoUrl = user.Photos?.SingleOrDefault(x => x.IsMain)?.Url
+                PhotoUrl = user.Photos?.SingleOrDefault(x => x.IsMain)?.Url,
+                KnownAs = user.KnownAs
             };
         }
         private async Task<bool> CheckExisted(string username) 
