@@ -1,4 +1,5 @@
 using API.Entities;
+using API.Helpers;
 
 namespace API.Interface
 {
@@ -6,9 +7,8 @@ namespace API.Interface
     {
         void Update(T t);
         Task<bool> SaveAllAsync();
-        Task<IEnumerable<T>> GetAllAsync();
-        Task<T> GetByPKAsync(object pk);
-        Task<IEnumerable<TDto>> GetAllDtoAsync();
+        Task<PageList<TDto>> GetAllDtoAsync(Params _params);
         Task<TDto> GetDtoByPKAsync(object pk);
+        Task<T> GetByPKAsync(object pk);
     }
 }

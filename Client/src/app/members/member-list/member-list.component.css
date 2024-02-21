@@ -1,0 +1,9 @@
+form .form-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+input,
+select {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}

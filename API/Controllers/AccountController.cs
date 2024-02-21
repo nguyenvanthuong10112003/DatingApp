@@ -42,7 +42,8 @@ namespace API.Controllers
             return new UserDto {
                 Username = newUser.UserName,
                 Token = tokenService.CreateToken(newUser),
-                KnownAs = newUser.KnownAs
+                KnownAs = newUser.KnownAs,
+                Gender = newUser.Gender
             };
         }
         [HttpPost("Login")]
@@ -64,7 +65,8 @@ namespace API.Controllers
                 Username = user.UserName,
                 Token = tokenService.CreateToken(user),
                 PhotoUrl = user.Photos?.SingleOrDefault(x => x.IsMain)?.Url,
-                KnownAs = user.KnownAs
+                KnownAs = user.KnownAs,
+                Gender = user.Gender
             };
         }
         private async Task<bool> CheckExisted(string username) 

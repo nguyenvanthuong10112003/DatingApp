@@ -9,6 +9,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using API.Helpers;
 
 namespace API.Controllers
 {
@@ -27,9 +28,13 @@ namespace API.Controllers
         }
         //api/users
         [HttpGet()]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
-            return Ok(await _userRepository.GetAllDtoAsync());
+            userParams.CurrentUsername = User.GetUsername();
+
+            var users = await _userRepository.GetAllDtoAsync(userParams);
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+            return Ok(users);
         }
         //api/users/id
         [HttpGet("{username}", Name = "GetUser")]
