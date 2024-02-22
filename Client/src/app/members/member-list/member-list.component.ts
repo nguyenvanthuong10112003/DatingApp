@@ -40,7 +40,7 @@ export class MemberListComponent {
     )
   }
 
-  pageChange(event: any) {
+  pageChanged(event: any) {
     this.userParams.pageNumber = event.page;
     this.memberService.userParams = this.userParams;
     this.loadMembers();

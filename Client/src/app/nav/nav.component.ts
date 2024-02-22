@@ -49,5 +49,6 @@ export class NavComponent implements OnInit {
     this.accountService.logout()
     this.router.navigateByUrl('/')
     this.memberService.setDefault()
+    this.memberService.setCacheDefault() 
   }
 }

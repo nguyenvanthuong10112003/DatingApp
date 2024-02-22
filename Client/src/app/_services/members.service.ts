@@ -14,10 +14,10 @@ import { User } from '../_models/user';
 export class MembersService {
   baseUrl = enviroment.apiUrl;
   members: Member[] = [];
+  membersMyLiked: Member[] = [];
   memberCache = new Map();
   user!: User;
   userParams!: UserParams;
-
   constructor(private http: HttpClient, private accountService: AccountService) { 
     this.accountService.currentUser$.pipe(take(1)).subscribe(
       user => {
@@ -29,6 +29,22 @@ export class MembersService {
 
   setDefault() {
     this.members = []
+    this.membersMyLiked = []
+  }
+
+  setCacheDefault() {
+    this.memberCache = new Map();
+  }
+
+  addLike(username: string) {
+    return this.http.post(this.baseUrl + 'likes/' + username, {});
+  }
+
+  getLikes(predicate: string, pageNumber: number, pageSize: number) {
+    let params = this.getPaginationHeaders(pageNumber, pageSize)
+    params = params.append('predicate', predicate);
+
+    return this.getPaginatedResult<Member[]>(this.baseUrl + 'likes', params);
   }
 
   getMembers(userParams: UserParams) {
@@ -93,6 +109,7 @@ export class MembersService {
         {
           paginatedResult.pagination = JSON.parse(response.headers.get('Pagination') || "");
         }
+
         return paginatedResult;
       })
     );
