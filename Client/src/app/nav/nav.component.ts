@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Observable } from 'rxjs';
 import { User } from '../_models/user';
-import { AlertComponent } from '../alert/alert.component';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';

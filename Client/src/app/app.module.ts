@@ -8,7 +8,6 @@ import { NavComponent } from './nav/nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { AlertComponent } from './alert/alert.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -26,6 +25,7 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,6 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     NavComponent,
     HomeComponent,
     RegisterComponent,
-    AlertComponent,
     MemberListComponent,
     ListsComponent,
     MessagesComponent,
@@ -45,7 +44,8 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     MemberEditComponent,
     PhotoEditorComponent,
     TextInputComponent,
-    DateInputComponent
+    DateInputComponent,
+    MemberMessagesComponent
   ],
   imports: [
     BrowserModule,

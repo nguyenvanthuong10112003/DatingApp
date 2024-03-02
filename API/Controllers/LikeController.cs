@@ -10,11 +10,11 @@ using Microsoft.VisualBasic;
 namespace API.Controllers
 {
     [Authorize]
-    public class LikesController : BaseApiController 
+    public class LikeController : BaseApiController 
     {
         private readonly ILikesRepository _likeRepository;
         private readonly IUserRepository _userRepository;
-        public LikesController(IUserRepository userRepository, ILikesRepository likesRepository) {
+        public LikeController(IUserRepository userRepository, ILikesRepository likesRepository) {
             _likeRepository = likesRepository;
             _userRepository = userRepository;
         }

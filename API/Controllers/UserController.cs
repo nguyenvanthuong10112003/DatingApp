@@ -42,7 +42,11 @@ namespace API.Controllers
         {
             if (string.IsNullOrEmpty(username))
                 return BadRequest("Username is invalid");
-            return await _userRepository.GetDtoByUsernameAsync(username);
+            
+            var user = await _userRepository.GetDtoByUsernameAsync(username);
+            if (user == null) 
+                return NotFound();
+            return user;
         }
         [HttpPut()]
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto) {
