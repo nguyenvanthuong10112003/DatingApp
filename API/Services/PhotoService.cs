@@ -4,11 +4,13 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;
 
-namespace API.Service 
+namespace API.Service
 {
-    public class PhotoService : IPhotoService {
+    public class PhotoService : IPhotoService
+    {
         private readonly Cloudinary _cloudinary;
-        public PhotoService(IOptions<CloudinarySettings> config) {
+        public PhotoService(IOptions<CloudinarySettings> config)
+        {
             var acc = new Account(
                 config.Value.CloudName, 
                 config.Value.ApiKey, 

@@ -7,11 +7,9 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers
-{
+namespace API.Controllers {
     [Authorize]
-    public class MessageController : BaseApiController
-    {
+    public class MessageController : BaseApiController {
         private readonly IUserRepository _userRepository;
         private readonly IMessageRepository _messageRepository;
         private readonly IMapper _mapper;
@@ -21,8 +19,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
         [HttpPost]
-        public async Task<ActionResult<MessageDto>> CreateMessage(CreateMessageDto createMessageDto) 
-        {
+        public async Task<ActionResult<MessageDto>> CreateMessage(CreateMessageDto createMessageDto) {
             var username = User.GetUsername();
 
             if (username == createMessageDto.RecipientUsername.ToLower()) 

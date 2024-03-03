@@ -11,7 +11,7 @@ import { AccountService } from './_services/account.service';
 export class AppComponent implements OnInit {
   public static buttonItems = {accept: 'accept', cancel: 'cancel'}
   title = 'Client';
-  constructor(private http: HttpClient, private accountService: AccountService) {}
+  constructor(private accountService: AccountService) {}
   ngOnInit(): void {
     this.setCurrentUser();
   }
