@@ -1,9 +1,3 @@
-namespace API.DTOs{
-    public class UserDto {
-        public string Username {set;get;}
-        public string Token {set;get;}
-        public string PhotoUrl {set; get;}
-        public string KnownAs {get; set;}
-        public string Gender {get; set;}
-    }    
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:25aa4a2fd61cbc2c842a0bccd9194a59c24efccb50989e5ba5341d40354fc575
+size 273

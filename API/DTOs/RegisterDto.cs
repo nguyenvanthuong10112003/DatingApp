@@ -1,22 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace API.DTOs 
-{
-    public class RegisterDto {
-        [Required]
-        public string Username {set; get;}
-        [Required]
-        public string KnownAs {set; get;}
-        [Required]
-        public string Gender {set; get;}
-        [Required]
-        public DateTime DateOfBirth {set; get;}
-        [Required]
-        public string City {get; set;}
-        [Required]
-        public string Country {get; set;}
-        [Required]
-        [StringLength(8, MinimumLength = 4)]
-        public string Password {set; get;}
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:70ccad9c378a247ff04968aba1283fc2fe0b830a1756886b80d6be3c045a94ae
+size 603

@@ -1,21 +1,3 @@
-using System.Text.Json;
-using API.Helpers;
-
-namespace API.Extensions
-{
-    public static class HttpExtensions
-    {
-        public static void AddPaginationHeader(this HttpResponse response, int currentPage, int itemsPerPage, int totalItems, int totalPages)
-        {
-            var paginationHeader = new PaginationHeader(currentPage, itemsPerPage, totalItems, totalPages);
-            
-            var options = new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            };
-
-            response.Headers.Add("Pagination", JsonSerializer.Serialize(paginationHeader, options));
-            response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:7ccea831fa22524e83e6c1c10722e96976331da96a17c36af240994621eb7b04
+size 756

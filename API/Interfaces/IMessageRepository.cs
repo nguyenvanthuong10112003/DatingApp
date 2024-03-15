@@ -1,17 +1,3 @@
-using API.DTOs;
-using API.Entities;
-using API.Helpers;
-using CloudinaryDotNet.Actions;
-
-namespace API.Interface
-{
-    public interface IMessageRepository 
-    {
-        void AddMessage(Message message);
-        void DeleteMessage(Message message);
-        Task<Message> GetMessage(int id);
-        Task<PageList<MessageDto>> GetMessagesForUser(MessageParams messageParams);
-        Task<IEnumerable<MessageDto>> GetMessageThread(string currentUsername, string RecipientUsername);
-        Task<bool> SaveAllAsync();
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4e64cbab0792367337c48ab92501b28ea6d6d04ee1d8f9456008a942da33f304
+size 813

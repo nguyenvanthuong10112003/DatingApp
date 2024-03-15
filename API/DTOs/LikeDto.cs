@@ -1,12 +1,3 @@
-namespace API.DTOs
-{
-    public class LikeDto 
-    {
-        public int Id {get; set;}
-        public string Username {get; set;}
-        public int Age {get; set;}
-        public string KnownAs {get; set;}
-        public string PhotoUrl {get; set;}
-        public string City {get; set;}
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:6a285224f3ba4623d94b004762515e2f0141c909aa0dad7c2e76742bccf0ceb1
+size 307

@@ -1,11 +1,11 @@
 <div class="card">
     <div class="card-body">
-        <div *ngIf="messages?.length === 0">
+        <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
             No messages yet... say hi by using the message box below
         </div>
 
-        <ul *ngIf="$any(messages)?.length > 0" class="chat">
-            <li *ngFor="let message of messages">
+        <ul *ngIf="$any(messageService.messageThread$ | async)?.length > 0" class="chat">
+            <li *ngFor="let message of (messageService.messageThread$ | async)">
                 <div>
                     <span class="chat-img float-end"> 
                         <img src="{{message.senderPhotoUrl || './assets/user.png'}}" 
@@ -19,11 +19,11 @@
                                     {{message.messageSent | timeago}}
                                 </span>
                                 <span class="text-danger" 
-                                    *ngIf="!message.dateRead">
+                                    *ngIf="!message.dateRead && message.senderUsername != username">
                                     (unread)
                                 </span>
-                                <span class="text-success" 
-                                    *ngIf="message.dateRead">
+                                <span class="text-success"
+                                    *ngIf="message.dateRead && message.senderUsername != username">
                                     (read {{message.dateRead | timeago}})
                                 </span>
                             </small>

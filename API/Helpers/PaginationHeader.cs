@@ -1,16 +1,3 @@
-namespace API.Helpers
-{
-    public class PaginationHeader 
-    {
-        public PaginationHeader(int currentPage, int itemsPerPage, int totalItems, int totalPages) {
-            this.CurrentPage = currentPage;
-            this.ItemsPerPage = itemsPerPage;
-            this.TotalItems = totalItems;
-            this.TotalPages = totalPages;
-        }
-        public int CurrentPage {get; set;}
-        public int ItemsPerPage {get; set;}
-        public int TotalItems {get; set;}
-        public int TotalPages {get; set;}
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e6d40820e81495628ac2b1b3da50f2d6442a1f18cbe34309c7b862728fcbd30e
+size 543

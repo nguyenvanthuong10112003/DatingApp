@@ -1,14 +1,3 @@
-using API.Data;
-using API.DTOs;
-using API.Entities;
-using API.Helpers;
-
-namespace API.Interface
-{
-    public interface ILikesRepository
-    {
-        Task<UserLike> GetUserLike(int sourceUserId, int likedUserId);
-        Task<AppUser> GetUserWithLikes(int userId);
-        Task<PageList<LikeDto>> GetUserLikes(LikesParams likesParams);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:84946a4454efc1e0ab44091de9bc0d1058c9bfc7e880bbe554447715fa47573b
+size 356

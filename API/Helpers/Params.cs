@@ -1,13 +1,3 @@
-namespace API.Helpers
-{
-    public class Params
-    {
-        private const int MaxPageSize = 50;
-        public int PageNumber {get; set;} = 1;
-        public int _pageSize = 10;
-        public int PageSize {
-            get => _pageSize;
-            set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:8f361cb8ec138434acf5d6672c82d9b1e7b8f7e8159ac046be5ea5fff6c3a9b2
+size 345

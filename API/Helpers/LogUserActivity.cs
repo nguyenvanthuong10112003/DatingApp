@@ -1,24 +1,3 @@
-using API.Extensions;
-using API.Interface;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace API.Helpers
-{
-    public class LogUserActivity : IAsyncActionFilter
-    {
-        public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
-        { 
-            var resultContext = await next();
-
-            if (!resultContext.HttpContext.User.Identity.IsAuthenticated) 
-                return;
-            
-            var userId = resultContext.HttpContext.User.GetUserId();
-            var repo = resultContext.HttpContext.RequestServices.GetService<IUserRepository>();
-            var user = await repo.GetByPKAsync(userId);
-            user.LastActive = DateTime.Now;
-            await repo.SaveAllAsync();
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:85a5d4c9ad62d9e4db1fd4039bde8199da300a8fb562560d5227673efaea1f5a
+size 841

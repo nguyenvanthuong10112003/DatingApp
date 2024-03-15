@@ -1,10 +1,3 @@
-namespace API.Helpers
-{
-    public class UserParams : Params {
-        public string? CurrentUsername {get; set;}
-        public string Gender {set; get;} = "all";
-        public int MinAge {get; set;} = 18;
-        public int MaxAge {get; set;} = 100;
-        public string OrderBy {get; set;} = "lastActive";
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9170648253b57b5cc0a76df11068b93c12a86018489631a67aef4b88d4785e17
+size 327

@@ -1,14 +1,3 @@
-using API.Entities;
-using API.Helpers;
-
-namespace API.Interface
-{
-    public interface IRepository <T,TDto>
-    {
-        void Update(T t);
-        Task<bool> SaveAllAsync();
-        Task<PageList<TDto>> GetAllDtoAsync(Params _params);
-        Task<TDto> GetDtoByPKAsync(object pk);
-        Task<T> GetByPKAsync(object pk);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:f022e580eb109b618bd1d6636191beabb079f4904003cafaa1921f0e48ce20a6
+size 344

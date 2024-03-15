@@ -1,18 +1,3 @@
-using API.Entities;
-
-namespace API.DTOs
-{
-    public class MessageDto
-    {
-        public int Id {get; set;}
-        public int SenderId {get; set;}
-        public string SenderUsername {get; set;}
-        public string SenderPhotoUrl {get; set;}
-        public int RecipientId {get;set;}
-        public string RecipientUsername {get; set;}
-        public string RecipientPhotoUrl {get; set;}
-        public string Content {get; set;}
-        public DateTime? DateRead {get; set;}
-        public DateTime MessageSent {get; set;}
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:79cc3ccec278d416c68d8dad9241bc3767ac6458bc6d0e1591b66240f3631be0
+size 554

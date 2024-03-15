@@ -1,26 +1,3 @@
-using API.Data;
-using API.Helpers;
-using API.Interface;
-using API.Service;
-using Microsoft.EntityFrameworkCore;
-
-namespace API.Extensions 
-{
-    public static class ApplicationServiceExtensions {
-        public static void AddApplicationServices(this IServiceCollection services, IConfiguration config) {
-            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
-            services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IPhotoService, PhotoService>();
-            services.AddScoped<IMessageRepository, MessageRepository>();
-            services.AddScoped<ILikesRepository, LikesRepository>();
-            services.AddScoped<LogUserActivity>();
-            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
-            services.AddDbContext<DataContext>(options => 
-            {
-                options.UseSqlite(config.GetConnectionString("DefaultConnection"));
-                SQLitePCL.Batteries.Init();
-            });
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:a7ee8645a9baaab19d0491571075b27cabd481c1dd3c5646c14a9437f3227c65
+size 1191

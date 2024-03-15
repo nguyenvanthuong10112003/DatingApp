@@ -39,7 +39,7 @@ export class MessagesComponent {
 
   deleteMessage(id: number) {
     this.messageService.deleteMessage(id).subscribe(() => {
-      this.messages.slice(this.messages.findIndex(item => item.id == id), 1);
+      this.loadMessages()
     })
   }
 }

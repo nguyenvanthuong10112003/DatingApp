@@ -1,25 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-
-namespace API.Helpers
-{
-    public class PageList<T> : List<T> 
-    {
-        public PageList(IEnumerable<T> items, int count, int pageNumber, int pageSize) 
-        {
-            this.CurrentPage = pageNumber;
-            this.TotalPages = (int) Math.Ceiling(count / (double) pageSize);
-            this.PageSize = pageSize;
-            this.TotalCount = count;
-            AddRange(items);
-        }
-        public int CurrentPage {get; set;}
-        public int TotalPages {get; set;}
-        public int PageSize {get; set;}
-        public int TotalCount {get; set;}
-        public static async Task<PageList<T>> CreateAsync(IQueryable<T> source, int pageNumber, int pageSize) {
-            var count = await source.CountAsync();
-            var items = await source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
-            return new PageList<T>(items, count, pageNumber, pageSize);
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:54ebb76d30c04852b9a5b791215108127426ab401e679351a0bbc9888af237d7
+size 984
