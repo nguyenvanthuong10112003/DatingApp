@@ -14,6 +14,7 @@ import { MembersService } from '../_services/members.service';
 })
 export class NavComponent implements OnInit {
   model: any = {}
+  onSideBar: boolean = false
 
   constructor(public accountService: AccountService, 
               private router: Router, 
@@ -42,6 +43,8 @@ export class NavComponent implements OnInit {
         error ='Login failer';
       this.toastr.error(error)
     })
+
+    this.onSideBar = false
   }
 
   logout() {
@@ -49,5 +52,9 @@ export class NavComponent implements OnInit {
     this.router.navigateByUrl('/')
     this.memberService.setDefault()
     this.memberService.setCacheDefault() 
+  }
+
+  toggleSideBar() {
+    this.onSideBar = !this.onSideBar
   }
 }

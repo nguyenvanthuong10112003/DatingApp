@@ -5,8 +5,10 @@ import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 import { Message } from '../_models/message';
 import { User } from '../_models/user';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
-import { BehaviorSubject, take } from 'rxjs';
+import { BehaviorSubject, map, take } from 'rxjs';
 import { Group } from '../_models/group';
+import { Time } from '@angular/common';
+import { AccountService } from './account.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +16,12 @@ import { Group } from '../_models/group';
 export class MessageService {
   baseUrl = enviroment.apiUrl;
   hubUrl = enviroment.hubUrl;
+  otherTimeSending: Date = new Date('2000-1-1')
   private hubConnection!: HubConnection;
   private messageThreadSource = new BehaviorSubject<Message[]>([]);
   messageThread$ = this.messageThreadSource.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private accountService: AccountService) { }
 
   createHubConnection(user: User, otherUsername: string) {
     this.hubConnection = new HubConnectionBuilder()
@@ -27,7 +30,8 @@ export class MessageService {
       })
       .withAutomaticReconnect()
       .build()
-    this.hubConnection.start().catch(error => console.log(error))
+    this.hubConnection.start()
+      .catch(error => console.log(error))
     this.hubConnection.on('ReceiveMessageThread', messages => {
       this.messageThreadSource.next(messages);
     })
@@ -48,11 +52,18 @@ export class MessageService {
         })
       }
     })
+    this.hubConnection.on('OtherSending', otherUsername => {
+      this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
+        if (user.username !== otherUsername)
+          this.otherTimeSending = new Date(Date())
+      })
+      }
+    )
   }
 
   stopHubConnection() {
     if (this.hubConnection) {
-      this.hubConnection.stop();
+      this.hubConnection.stop()
     }
   }
 
@@ -64,6 +75,11 @@ export class MessageService {
 
   async sendMessage(username: string, content: string) {
     return this.hubConnection.invoke('SendMessage', {recipientUsername: username, content})
+      .catch(error => console.log(error));
+  }
+
+  async sendInputMessage(username: string) {
+    return this.hubConnection.invoke('OtherStartInput', username)
       .catch(error => console.log(error));
   }
  

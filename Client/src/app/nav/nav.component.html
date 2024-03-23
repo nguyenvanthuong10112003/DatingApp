@@ -1,37 +1,42 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary" style="z-index: 1999;">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
     <div class="container">
-        <a class="navbar-brand" routerLink="/" routerLinkActive="active">Dating App</a>
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <a class="navbar-brand fw-bolder" routerLink="/" routerLinkActive="active">Dating App</a>
+        <span class="text-light ms-2 cursor-pointer" *ngIf="(accountService.currentUser$ | async) as user">
+            <i class="fa fa-bars text-white fs-2 d-lg-none d-md-none" (click)="toggleSideBar()"></i>
+        </span>
+        <ul class="navbar-nav me-auto mb-2 mb-md-0 d-none d-lg-flex d-md-flex">
             <ng-container *ngIf="(accountService.currentUser$ | async)">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
+                    <a class="nav-link fw-medium" routerLink="/members" routerLinkActive="active">Matches</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
+                    <a class="nav-link fw-medium" routerLink="/lists" routerLinkActive="active">Lists</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
+                    <a class="nav-link fw-medium" routerLink="/messages" routerLinkActive="active">Messages</a>
                 </li>
                 <li class="nav-item" *appHasRole="['Admin', 'Moderator']">
-                    <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+                    <a class="nav-link fw-medium" routerLink="/admin" routerLinkActive="active">Admin</a>
                 </li>
             </ng-container>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
+                <a class="nav-link fw-medium" routerLink="/errors" routerLinkActive="active">Errors</a>
             </li>
         </ul>
-        <div class="btn-group align-items-center" dropdown *ngIf="(accountService.currentUser$ | async) as user">
+        <div class="btn-group align-items-center d-none d-lg-block d-md-block" dropdown *ngIf="(accountService.currentUser$ | async) as user">
             <img src="{{user.photoUrl || '../../../../assets/user.png'}}" alt="{{user.username}}">
-            <span class="dropdown-toggle text-light ms-2 cursor-pointer" dropdownToggle>Welcome {{user.knownAs || user.username | titlecase}}</span>
+            <span class="dropdown-toggle text-light ms-2 cursor-pointer fw-medium" dropdownToggle>Welcome {{user.knownAs || user.username | titlecase}}</span>
             <div class="dropdown-menu list-buttons" *dropdownMenu>
-                <a href="#" class="dropdown-item" routerLink="/member/edit">Edit profile</a>
-                <a href="#" class="dropdown-item" (click)="logout()">Logout</a>
+                <a href="#" class="dropdown-item fw-medium" routerLink="/member/edit">Edit profile</a>
+                <a href="#" class="dropdown-item fw-medium" (click)="logout()">Logout</a>
             </div>
         </div>
         <form class="d-flex" *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
             <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="Username" required>
             <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password" placeholder="Password" required>
-            <button class="btn btn-success" type="submit">Login</button>
+            <button class="btn btn-success fw-medium" type="submit">Login</button>
         </form>
     </div>
 </nav>
+<app-sidebar [onSideBar]="onSideBar" (logout)="logout()">
+</app-sidebar>

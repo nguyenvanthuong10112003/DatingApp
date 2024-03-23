@@ -1,18 +1,104 @@
 .card {
     border: none;
 }
-
 .chat {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-
 .chat li {
     margin-bottom: 10px;
     border-bottom: 1px dotted #B3A9A9;
 }
-
 .rounded-circle {
     max-height: 40px;
+}
+.max-w-75 {
+    max-width: 75%;
+}
+.x1ta3ar0 {
+    height: 17px;
+}
+.xa4qsjk {
+    animation-iteration-count: infinite;
+}
+.x1hc1fzr {
+    opacity: 1;
+}
+.xmg6eyc {
+    animation-duration: 1.5s;
+}
+.x4hg4is {
+    animation-timing-function: ease-in-out;
+}
+.x1uzojwf {
+    animation-delay: 0s;
+}
+.x1bcwpiy {
+    animation-name: x1yitzd3-B;
+}
+.xqu0tyb {
+    height: 6px;
+}
+.xm3z3ea {
+    border-top-left-radius: 2px;
+}
+.x1x8b98j {
+    border-top-right-radius: 2px;
+}
+.x16mih1h {
+    border-bottom-left-radius: 2px;
+}
+.x131883w {
+    border-bottom-right-radius: 2px;
+}
+.x51ohtg {
+    width: 6px;
+}
+.xwnhzmj {
+    animation-name: x1h06q2e-B;
+}
+.xhhsvwb {
+    margin-right: 2px;
+}
+.xgzva0m {
+    margin-left: 2px;
+}
+.x1t83zlg {
+    animation-delay: .2s;
+}
+.x1iuwi03 {
+    background-color: #B0B3B8;
+}
+.x1x1c4bx {
+    animation-delay: .3s;
+}
+.x1xwhvez {
+    animation-delay: .4s;
+}
+.circle {
+    border-radius: 50%;
+}
+@keyframes x1h06q2e-B {
+    0% {
+        transform: translateY(0);
+    }
+    28% {
+        transform: translateY(-5px);
+    }
+    44% {
+        transform: translateY(0);
+    }
+}
+@keyframes x1yitzd3-B {
+    0% {
+        opacity: .6;
+    }
+    
+    33% {
+        opacity: .3;
+    }
+    100% {
+        opacity: .6;
+    }
 }

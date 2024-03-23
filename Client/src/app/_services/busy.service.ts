@@ -16,7 +16,7 @@ export class BusyService {
       color: "#333333", 
       type: "line-scale-party",
       size: "large",
-      zIndex: 1998
+      zIndex: 1029
     })
   }
 

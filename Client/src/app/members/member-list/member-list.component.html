@@ -3,7 +3,7 @@
 </div>
 
 <div class="container mt-3">
-    <form #form="ngForm" class="form-inline mb-3 d-flex flex-row"
+    <form #form="ngForm" class="form-inline mb-3 d-flex flex-rowv flex-wrap align-items-center"
         (ngSubmit)="loadMembers()"
         autocomplete="off">
         <div class="form-group">
@@ -43,7 +43,7 @@
         <button (click)="resetFilters()" class="btn btn-info ms-1">
             Reset Filters
         </button>
-        <div class="col">
+        <div class="col m-2">
             <div class="btn-group float-end">
                 <button class="btn btn-primary"
                     type="button"
@@ -67,7 +67,7 @@
 </div>
 
 <div class="row align-items-end">
-    <div class="col-2" *ngFor="let member of members">
+    <div class="col-lg-2 col-sm-6 col-md-4" *ngFor="let member of members">
         <app-member-card [member]="member">
         </app-member-card>
     </div>

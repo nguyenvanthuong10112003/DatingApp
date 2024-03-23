@@ -4,35 +4,84 @@
             No messages yet... say hi by using the message box below
         </div>
 
-        <ul *ngIf="$any(messageService.messageThread$ | async)?.length > 0" class="chat">
+        <ul #scrollMe
+            [scrollTop]="scrollMe.scrollHeight"
+            style="overflow: scroll; max-height: 65vh; overflow-x: hidden;"
+            *ngIf="$any(messageService.messageThread$ | async)?.length > 0" 
+            class="chat">
             <li *ngFor="let message of (messageService.messageThread$ | async)">
-                <div>
-                    <span class="chat-img float-end"> 
+                <div *ngIf="message.senderUsername == username">
+                    <span class="chat-img d-flex flex-row align-items-start"> 
+                        <img src="{{message.senderPhotoUrl || './assets/user.png'}}" 
+                            class="rounded-circle"  
+                            alt="{{message.senderUsername}}">
+                        <small class="text-muted ms-2 w-75 pe-2">
+                            <span class="fa fa-clock-o">
+                                {{message.messageSent | timeago}}
+                            </span>
+                            <p>{{message.content}}</p>
+                        </small>
+                    </span>
+                </div>
+                <div *ngIf="message.senderUsername != username">
+                    <span class="chat-img d-flex flex-row align-items-start justify-content-end me-2"> 
+                        <small class="text-muted me-2 pe-2 text-end max-w-75">
+                            <span>
+                                <span class="text-danger" 
+                                    *ngIf="!message.dateRead">
+                                    (unread)
+                                </span>
+                                <span class="text-success"
+                                    *ngIf="message.dateRead">
+                                    (read {{message.dateRead | timeago}})
+                                </span>
+                                <i class="fa fa-clock-o"></i>
+                                {{message.messageSent | timeago}}
+                            </span>
+                            <p class="text-end">{{message.content}}</p>
+                        </small>
                         <img src="{{message.senderPhotoUrl || './assets/user.png'}}" 
                             class="rounded-circle" 
                             alt="{{message.senderUsername}}">
                     </span>
-                    <div class="chat-body">
-                        <div class="header">
-                            <small class="text-muted">
-                                <span class="fa fa-clock-o">
-                                    {{message.messageSent | timeago}}
-                                </span>
-                                <span class="text-danger" 
-                                    *ngIf="!message.dateRead && message.senderUsername != username">
-                                    (unread)
-                                </span>
-                                <span class="text-success"
-                                    *ngIf="message.dateRead && message.senderUsername != username">
-                                    (read {{message.dateRead | timeago}})
-                                </span>
-                            </small>
-                        </div>
-                        <p>{{message.content}}</p>
-                    </div>
+                </div>
+            </li>
+            <li *ngIf="subTime() < 1000">
+                <div>
+                    <span class="chat-img d-flex flex-row align-items-center" style="margin-bottom: 16px;">  
+                        <img src="{{photoOtherUrl || './assets/user.png'}}" 
+                            class="rounded-circle"  
+                            alt="{{username}}">
+                        <small class="text-muted ms-2 w-75 pe-2 d-flex">
+                            <div class="xmg6eyc xa4qsjk x1bcwpiy x4hg4is x1hc1fzr x1uzojwf">
+                                <div
+                                    class="circle align-items-center xmg6eyc xa4qsjk xwnhzmj x4hg4is x1iuwi03 xm3z3ea x1x8b98j x131883w x16mih1h d-flex xqu0tyb xgzva0m xhhsvwb x51ohtg x1t83zlg">
+                                </div>
+                            </div>
+                            <div class="xmg6eyc xa4qsjk x1bcwpiy x4hg4is x1hc1fzr xfjzax6">
+                                <div
+                                    class="circle xmg6eyc xa4qsjk xwnhzmj x4hg4is x1iuwi03 xm3z3ea x1x8b98j x131883w x16mih1h d-flex xqu0tyb xgzva0m xhhsvwb x51ohtg x1x1c4bx">
+                                </div>
+                            </div>
+                            <div class="xmg6eyc xa4qsjk x1bcwpiy x4hg4is x1hc1fzr x1la68h3">
+                                <div
+                                    class="circle align-items-center xmg6eyc xa4qsjk xwnhzmj x4hg4is x1iuwi03 xm3z3ea x1x8b98j x131883w x16mih1h d-flex xqu0tyb xgzva0m xhhsvwb x51ohtg x1xwhvez">
+                                </div>
+                            </div>
+                        </small>
+                    </span>
                 </div>
             </li>
         </ul>
+        <div *ngIf="false" class="text-muted bg-primary" 
+            style="border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1);
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+                font-size: 14px;
+                cursor: pointer;"
+                (click)="scrollToBottom()">
+            <i class="ms-1 me-1 fa fa-angle-double-down text-white"></i>
+            <span class="text-white">Has a new message</span>            
+        </div>
     </div>
 
     <div class="card-footer">
@@ -43,7 +92,7 @@
                     class="form-control input-sm" 
                     [(ngModel)]="messageContent" 
                     placeholder="Send a private message"
-                    required>
+                    required (keypress)="messageService.sendInputMessage(username)" >
                 <div class="input-group-append">
                     <button [disabled]="!messageForm.valid" class="btn btn-primary" type="submit">
                         Send
