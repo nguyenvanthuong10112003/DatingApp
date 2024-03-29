@@ -1,0 +1,77 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\3rdpartylicenses.txt",
+      "PackagePath": "staticwebassets\\3rdpartylicenses.txt"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\assets\\js\\alert.js",
+      "PackagePath": "staticwebassets\\assets\\js\\alert.js"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\assets\\user.png",
+      "PackagePath": "staticwebassets\\assets\\user.png"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\fontawesome-webfont.2b13baa7dd4f54c9.eot",
+      "PackagePath": "staticwebassets\\fontawesome-webfont.2b13baa7dd4f54c9.eot"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\fontawesome-webfont.8a7cb27d142e3e19.ttf",
+      "PackagePath": "staticwebassets\\fontawesome-webfont.8a7cb27d142e3e19.ttf"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\fontawesome-webfont.cf011583fb81df9f.woff",
+      "PackagePath": "staticwebassets\\fontawesome-webfont.cf011583fb81df9f.woff"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\fontawesome-webfont.da909aa098b0ee2d.svg",
+      "PackagePath": "staticwebassets\\fontawesome-webfont.da909aa098b0ee2d.svg"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\fontawesome-webfont.e9955780856cf8aa.woff2",
+      "PackagePath": "staticwebassets\\fontawesome-webfont.e9955780856cf8aa.woff2"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\main.91b231f0a60956b4.js",
+      "PackagePath": "staticwebassets\\main.91b231f0a60956b4.js"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\polyfills.d35395bf4714a7ed.js",
+      "PackagePath": "staticwebassets\\polyfills.d35395bf4714a7ed.js"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\runtime.726a12cf02269fc9.js",
+      "PackagePath": "staticwebassets\\runtime.726a12cf02269fc9.js"
+    },
+    {
+      "Id": "D:\\appDating\\API\\wwwroot\\styles.8688b3bee3804bee.css",
+      "PackagePath": "staticwebassets\\styles.8688b3bee3804bee.css"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.API.props",
+      "PackagePath": "build\\API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.API.props",
+      "PackagePath": "buildMultiTargeting\\API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.API.props",
+      "PackagePath": "buildTransitive\\API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

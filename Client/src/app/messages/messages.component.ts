@@ -48,4 +48,10 @@ export class MessagesComponent {
         }
       })
   }
+
+  changeContainer() {
+    this.pageNumber = 1;
+    this.pagination.currentPage = 1;
+    this.loadMessages();
+  }
 }

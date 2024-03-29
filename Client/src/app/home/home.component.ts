@@ -12,8 +12,6 @@ export class HomeComponent implements OnInit {
 
   registerMode = false;
 
-  baseUrl = "https://localhost:5001/api"
-
   users: any
 
   constructor(public httpClient: HttpClient, public accountService: AccountService) {}
