@@ -13,7 +13,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/client",
+                        "outputPath": "../API/wwwroot",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": [
@@ -27,7 +27,7 @@
                         "styles": [
                             "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
                             "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "src/styles.css",
+                            "./src/styles.css",
                             "./node_modules/bootswatch/dist/Pulse/bootstrap.css",
                             "./node_modules/font-awesome/css/font-awesome.css",
                             "./node_modules/ngx-toastr/toastr.css",
@@ -39,8 +39,8 @@
                         "production": {
                             "budgets": [{
                                     "type": "initial",
-                                    "maximumWarning": "500kb",
-                                    "maximumError": "1mb"
+                                    "maximumWarning": "4mb",
+                                    "maximumError": "6mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
@@ -52,7 +52,14 @@
                         },
                         "development": {
                             "buildOptimizer": false,
-                            "optimization": false,
+                            "optimization": {
+                                "scripts": true,
+                                "styles": {
+                                  "minify": true,
+                                  "inlineCritical": false
+                                },
+                                "fonts": true
+                            },
                             "vendorChunk": true,
                             "extractLicenses": false,
                             "sourceMap": true,

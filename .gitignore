@@ -1,0 +1,8 @@
+.vs
+.vscode
+API/bin
+API/obj
+Client/.angular
+Client/.vscode
+Client/node_modules
+generateTrustedSSL
