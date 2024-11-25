@@ -1,8 +1,0 @@
-D:\appDating\API\obj\Debug\net7.0\API.csproj.AssemblyReference.cache
-D:\appDating\API\obj\Debug\net7.0\API.GeneratedMSBuildEditorConfig.editorconfig
-D:\appDating\API\obj\Debug\net7.0\API.AssemblyInfoInputs.cache
-D:\appDating\API\obj\Debug\net7.0\API.AssemblyInfo.cs
-D:\appDating\API\obj\Debug\net7.0\API.csproj.CoreCompileInputs.cache
-D:\appDating\API\obj\Debug\net7.0\API.MvcApplicationPartsAssemblyInfo.cs
-D:\appDating\API\obj\Debug\net7.0\API.MvcApplicationPartsAssemblyInfo.cache
-D:\appDating\API\obj\Debug\net7.0\API.sourcelink.json
